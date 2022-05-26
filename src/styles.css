@@ -6,7 +6,7 @@
 }
 
 body {
-  max-width: 1024px;
+  /* max-width: 1024px; */
   margin-left: auto;
   margin-right: auto;
 }
@@ -41,6 +41,17 @@ header li {
   list-style: none;
   margin: 12px 0;
   font-size: 2rem;
+}
+
+footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-top: 2px solid #000;
+  background-color: #fff;
+  text-align: center;
+  margin-top: 32px;
+  padding: 24px;
 }
 
 input,

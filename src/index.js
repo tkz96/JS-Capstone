@@ -1,8 +1,11 @@
 import './styles.css';
 // import '@fortawesome/fontawesome-free/js/fontawesome';
 // import '@fortawesome/fontawesome-free/js/solid';
+import { getEpisodes } from './apiclass.js';
 
-const comments = document.getElementById('comments');
+window.onload = getEpisodes();
+
+const comments = document.getElementsByClassName('comments');
 
 comments.addEventListener('click', () => {
     const overlay = document.getElementById('overlay');
