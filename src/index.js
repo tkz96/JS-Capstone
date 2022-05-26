@@ -5,15 +5,8 @@ import { getEpisodes } from './apiclass.js';
 
 window.onload = getEpisodes();
 
-const comments = document.getElementsByClassName('comments');
 
-comments.addEventListener('click', () => {
-    const overlay = document.getElementById('overlay');
-    overlay.style.display = 'flex';
-});
 
-const closeBtn = document.getElementById('close-overlay');
-
-closeBtn.addEventListener('click', () => {
-    overlay.style.display = 'none';
-});
+// window.addEventListener('DOMContentLoaded', () => {
+    
+// });

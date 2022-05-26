@@ -15,5 +15,10 @@ async function getEpisodes() {
   displayEpisodes(data);
 }
 
+async function getComments(itemID) {
+  const response = await fetch(`${baseUrl}/${ourID}/comments?item_id=${itemID}`);
+  const data = await response.json();
+  console.log(data);
+};
 
-export { getEpisodes };
+export { getEpisodes, getComments };
