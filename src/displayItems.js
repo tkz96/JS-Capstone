@@ -23,9 +23,10 @@ const displayEpisodes = (card) => {
   const comments = document.querySelectorAll('.comments');
   
   comments.forEach((n) => n.addEventListener('click', () => { 
-    overlay.style.display = 'flex';  
-    displayOverlay(card, n.getAttribute('data-id'));
-    getComments(2);
+    overlay.style.display = 'flex';
+    let targetID = n.getAttribute('data-id');
+    displayOverlay(card, targetID);
+    getComments(targetID);
     }));
 };
 
