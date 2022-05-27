@@ -60,7 +60,6 @@ textarea {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  font-size: 15px;
   border-color: #cfd8dc;
   padding: 15px 38px 15px 16px;
   border: 2px solid black;
@@ -101,10 +100,6 @@ button:active {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-}
-
-.info-card img {
-  width: 240px;
 }
 
 #overlay {

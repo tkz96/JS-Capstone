@@ -1,8 +1,6 @@
-/* eslint-disable no-restricted-globals */
-/* eslint-disable camelcase */
-/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-cycle */
 
-import { displayEpisodes } from './displayItems.js';
+import { displayEpisodes, displayComments } from './displayItems.js';
 
 const ourID = 'VquE0tA2WmPqHydxagQA';
 
@@ -18,7 +16,22 @@ async function getEpisodes() {
 async function getComments(itemID) {
   const response = await fetch(`${baseUrl}/${ourID}/comments?item_id=${itemID}`);
   const data = await response.json();
-  console.log(data);
+  displayComments(data);
+}
+
+const postComment = (id, name, comment) => {
+  fetch(`${baseUrl}/${ourID}/comments`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json; charset="utf-8"',
+    },
+    body: JSON.stringify({
+      item_id: id,
+      username: name,
+      comment,
+    }),
+  }).then(() => getComments(id));
 };
 
-export { getEpisodes, getComments };
+export { getEpisodes, getComments, postComment };

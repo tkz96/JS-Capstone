@@ -1,75 +1,91 @@
-import { getComments } from './apiclass.js';
+/* eslint-disable import/no-cycle */
+
+import { getComments, postComment } from './apiclass.js';
 
 const appContainer = document.querySelector('.app-container');
 const overlay = document.getElementById('overlay');
 
-const displayEpisodes = (card) => {
-  let item = '';  
-  card.forEach((element) => {
-    item += `
-    <div class="info-card">
-      <figure>
-        <img src="${element.image.medium}" alt="">
-        <figcaption>${element.name}</figcaption>
-      </figure>
-      <div class="${element.id}">
-        <i class="fa fa-heart-o" aria-hidden="true" id='card${element.id}'></i> <span>${element.id}</span>
-      </div>
-      <button class="comments" data-id="${element.id}">Comments</button>
-    </div>`;
-  });
-  appContainer.innerHTML = item;
-
-  const comments = document.querySelectorAll('.comments');
-  
-  comments.forEach((n) => n.addEventListener('click', () => { 
-    overlay.style.display = 'flex';
-    let targetID = n.getAttribute('data-id');
-    displayOverlay(card, targetID);
-    getComments(targetID);
-    }));
-};
-
 const displayOverlay = (array, n) => {
-    console.log(n-1)
-
-    overlay.innerHTML = `
+  overlay.innerHTML = `
         <div id="modal">
             <button id="close-overlay">X</button>
             <figure>
-                <img src="${array[n-1].image.medium}" alt="">
-                <figcaption></figcaption>
+                <img src="${array[n - 1].image.medium}" alt="">
+                <figcaption>${array[n - 1].name}</figcaption>
             </figure>
-            <div>
-                <ul id="modal-info">
-                    <li>Fuel: Titanium</li>
-                    <li>Length: 100,000</li>
-                    <li>Weight: 400</li>
-                    <li>Power: 100,000,000</li>
-                </ul>
-            </div>
-            <div id="comment-section">
-                <h3>Comments (2)</h3>
-                <p>03/11/2021 Alex: I'd love to buy it!</p>
-                <p>03/11/2021 Alex: I'd love to buy it!</p>
-            </div>
+            <div id="comment-section"></div>
+            <div id="comment-list"></div>
             <div id="add-a-comment">
                 <h3>Add A Comment</h3>
-                <form id="form">
-                    <input type="text" name="name" placeholder="Your Name" required/>
-                    <textarea name="textarea" placeholder="Your Insights" maxlength="500" required></textarea>
+                <form id="comment-form">
+                    <input id="comment-name" type="text" name="name" placeholder="Your Name" required/>
+                    <textarea id="comment-textarea" name="textarea" placeholder="Your Insights" maxlength="500" required></textarea>
                     <button type="submit">Comment</button>
                 </form>
             </div>
         </div>`;
 
-        const closeOverlay = document.getElementById('close-overlay');
+  const closeOverlay = document.getElementById('close-overlay');
 
-        closeOverlay.addEventListener('click', () => {
-            overlay.style.display = 'none'; 
-        })
-    };
+  closeOverlay.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
 
-    
+  const commentForm = document.getElementById('comment-form');
+  const commentName = document.getElementById('comment-name');
+  const commentTextArea = document.getElementById('comment-textarea');
 
-export { displayEpisodes, displayOverlay };
+  commentForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    postComment(n, commentName.value, commentTextArea.value);
+    commentName.value = '';
+    commentTextArea.value = '';
+  });
+};
+
+const displayComments = (arr) => {
+  const commentSection = document.getElementById('comment-section');
+  if (arr.length === undefined) {
+    arr.length = 0;
+  }
+  commentSection.innerHTML = `<h3>Comments (${arr.length})</h3>`;
+
+  const commentList = document.getElementById('comment-list');
+  let item = '';
+
+  arr.forEach((element) => {
+    item += `
+                <p>${element.creation_date} - ${element.username}: ${element.comment}</p>
+            `;
+  });
+  commentList.innerHTML = item;
+};
+
+const displayEpisodes = (card) => {
+  let item = '';
+  card.forEach((element) => {
+    item += `
+      <div class="info-card">
+        <figure>
+          <img src="${element.image.medium}" alt="">
+          <figcaption>${element.name}</figcaption>
+        </figure>
+        <div class="${element.id}">
+          <i class="fa fa-heart-o" aria-hidden="true" id='card${element.id}'></i> <span>${element.id}</span>
+        </div>
+        <button class="comments" data-id="${element.id}">Comments</button>
+      </div>`;
+  });
+  appContainer.innerHTML = item;
+
+  const comments = document.querySelectorAll('.comments');
+
+  comments.forEach((n) => n.addEventListener('click', () => {
+    overlay.style.display = 'flex';
+    const targetID = n.getAttribute('data-id');
+    getComments(targetID);
+    displayOverlay(card, targetID);
+  }));
+};
+
+export { displayEpisodes, displayOverlay, displayComments };
