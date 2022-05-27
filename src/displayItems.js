@@ -3,6 +3,7 @@
 import { getComments, postComment } from './apiclass.js';
 
 const appContainer = document.querySelector('.app-container');
+const noOfEpisodes = document.querySelector('.number-of-episodes');
 const overlay = document.getElementById('overlay');
 
 const displayOverlay = (array, n) => {
@@ -62,6 +63,8 @@ const displayComments = (arr) => {
 };
 
 const displayEpisodes = (card) => {
+  noOfEpisodes.innerHTML = `<h2>Episodes (${card.length})</h2>`;
+
   let item = '';
   card.forEach((element) => {
     item += `
