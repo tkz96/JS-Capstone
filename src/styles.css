@@ -143,3 +143,24 @@ button:active {
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
+#likesImage {
+  background-color: #eff3f5;
+  width: 25px;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  color: rgb(245, 217, 247);
+  background-color: rgb(69, 131, 175);
+}
+
+nav p {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-left: 10px;
+}

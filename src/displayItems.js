@@ -71,8 +71,9 @@ const displayEpisodes = (card) => {
           <figcaption>${element.name}</figcaption>
         </figure>
         <div class="${element.id}">
-          <i class="fa fa-heart-o" aria-hidden="true" id='card${element.id}'></i> <span>${element.id}</span>
-        </div>
+        <img id='likesImage' class="heart" src="https://yusufnviiri.github.io/capTest/images/hearts.png" alt="">
+              </div>
+        <span class="likes" id="${element.id}">0 likes</span>
         <button class="comments" data-id="${element.id}">Comments</button>
       </div>`;
   });
