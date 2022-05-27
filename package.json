@@ -7,6 +7,7 @@
     "eslint-plugin-import": "^2.26.0",
     "hint": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.0",
     "style-loader": "^3.3.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
@@ -16,7 +17,7 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.0"
   },
-  "name": "leaderboard",
+  "name": "js-capstone",
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
@@ -117,18 +118,19 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev": "webpack serve --open"
+    "dev": "webpack serve --open",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tkz96/Leaderboard.git"
+    "url": "git+https://github.com/tkz96/JS-Capstone.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tkz96/Leaderboard/issues"
+    "url": "https://github.com/tkz96/JS-Capstone/issues"
   },
-  "homepage": "https://github.com/tkz96/Leaderboard#readme",
+  "homepage": "https://github.com/tkz96/JS-Capstone#readme",
   "description": ""
 }
